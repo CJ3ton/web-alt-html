@@ -8,7 +8,11 @@ const spoiler = document.querySelectorAll('.how__item-top'),
     overlay = document.querySelector('.overlay'),
     modal = document.querySelector('.modal'),
     modalData = document.querySelectorAll('.modal__data'),
-    modalClose = document.querySelector('.modal__close');
+    modalClose = document.querySelector('.modal__close'),
+    burger = document.querySelector('.burger'),
+    mobileMenu = document.querySelector('.mobile__menu'),
+    mobileClose = document.querySelector('.mobile__menu-close'),
+    menuList = document.querySelector('.menu__list');
 
 console.log(works, modalData);
 
@@ -39,10 +43,18 @@ modalClose.addEventListener('click', () => {
     modal.classList.remove('show');
 });
 
+menuList.addEventListener('click', (e) => {
+    if (e.target.nodeName === 'A') {
+        overlay.classList.remove('show');
+        mobileMenu.classList.remove('show');
+    };
+});
+
 overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
         overlay.classList.remove('show');
         modal.classList.remove('show');
+        mobileMenu.classList.remove('show');
     }
 });
 
@@ -55,6 +67,16 @@ function modalDataHide() {
 function modalDataShow(i = 0) {
     modalData[i].classList.add('show');
 }
+
+burger.addEventListener('click', () => {
+    overlay.classList.add('show');
+    mobileMenu.classList.add('show');
+});
+
+mobileClose.addEventListener('click', () => {
+    overlay.classList.remove('show');
+    mobileMenu.classList.remove('show');
+});
 
 const swiper = new Swiper('.swiper', {
     loop: true,
@@ -108,7 +130,7 @@ hideTabContent();
 showTabContent();
 modalDataHide();
 
-tabsBtn.forEach((btn, i)=> {
+tabsBtn.forEach((btn, i) => {
     btn.addEventListener('click', e => {
         e.preventDefault();
         hideTabContent();
