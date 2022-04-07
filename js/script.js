@@ -47,7 +47,7 @@ menuList.addEventListener('click', (e) => {
     if (e.target.nodeName === 'A') {
         overlay.classList.remove('show');
         mobileMenu.classList.remove('show');
-    };
+    }
 });
 
 overlay.addEventListener('click', (e) => {
